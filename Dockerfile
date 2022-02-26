@@ -15,11 +15,12 @@ FROM pytorch/pytorch:1.7.0-cuda11.0-cudnn8-devel
      # Install DLNest
      && pip install git+https://github.com/SymenYang/DLNest.git \
      # Install other libs
-     && pip install tensorboard\
-     && pip install sklearn
-     #\
+     && pip install tensorboard \
+     && pip install sklearn \
      # Set path in config
      #&& bash BeforeTrain.sh
+     && pip install numpy>=1.19.5 cython matplotlib opencv-python tqdm \
+     && pip install sklearn
 
      #&& pip install requests ninja cython yacs>=0.1.8 numpy>=1.19.5 cython matplotlib opencv-python tqdm \
      #&& pip install protobuf sklearn boto3 scikit-image cityscapesscripts \
