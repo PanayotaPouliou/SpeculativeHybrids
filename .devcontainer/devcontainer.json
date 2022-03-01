@@ -14,7 +14,7 @@
 	"settings": {},
 	
 	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": ["ms-toolsai.jupyter","ms-python.python","sbsnippets.pytorch-snippets", "mechatroner.rainbow-csv"],
+	"extensions": ["ms-python.python","sbsnippets.pytorch-snippets"],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
