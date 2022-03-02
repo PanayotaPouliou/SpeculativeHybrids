@@ -10,6 +10,7 @@ RUN apt-get update -y && export DEBIAN_FRONTEND=noninteractive
 
 #Import CV2
 #RUN apt-get install ffmpeg libsm6 libxext6  -y
+RUN apt-get update && apt-get install git -y
 
 RUN conda install -y ipython h5py nltk joblib pandas scipy \
     # Install DLNest
