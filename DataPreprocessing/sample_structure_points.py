@@ -24,6 +24,7 @@ def read_pointclouds(points_path,semantic_path,sample_path):
 
     points = points[sample]
     sem_label = sem_label[sample]
+    print (sem_label)
 
     return points,sem_label
 
@@ -38,9 +39,11 @@ def get_sem_counts(sem_label):
     """
     counts = []
     for item in sem_label:
-        while item > len(counts):
+        while item >= len(counts):
             counts.append(0)
-        counts[item - 1] += 1
+        counts[item - 1] = counts[item - 1] + 1
+
+        
     return len(counts),counts
 
 def get_sem_split(sem_counts,points_num,k):
