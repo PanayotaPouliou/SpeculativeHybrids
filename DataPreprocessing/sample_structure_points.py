@@ -39,9 +39,10 @@ def get_sem_counts(sem_label):
     """
     counts = []
     for item in sem_label:
-        while item >= len(counts):
+        #while item >= len(counts):
+        while item > len(counts):
             counts.append(0)
-        counts[item - 1] = counts[item - 1] + 1
+        counts[item - 1] += 1
 
         
     return len(counts),counts
