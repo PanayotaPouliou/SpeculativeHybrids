@@ -5,6 +5,6 @@
         "semantic_avg_sampled_pointcloud_path" : "./Datas/avg",
         "semantic_label_path" : "./Datas/train_label",
         "category_information_path" : "synsetoffset2category.txt",
-        "class_choice" : ["Building"]
+        "class_choice" : ["Airplane"]
     }
 }
