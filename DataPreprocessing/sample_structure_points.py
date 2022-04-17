@@ -1,6 +1,7 @@
 import pathlib
 from pathlib import Path
 import json
+from pyexpat import model
 import numpy as np
 from sklearn.cluster import KMeans
 
@@ -82,7 +83,52 @@ def k_means(points,k,id):
     estimator.fit(points)
     centroids = estimator.cluster_centers_
     ids = [[id] for i in range(k)]
+    print (centroids)
     return np.concatenate([centroids, ids],axis=1)
+
+from GNG_implementation.neuralgas import GrowingNeuralGas
+
+def gng(points,k,id):
+
+    arr = np.array(points)
+    print (np.shape(arr))
+
+    """
+    args:
+        points: [n] point cloud of same semantic label
+        k: INT the k in k_means -> n_inputs
+        id: INT id of the semantic label
+    
+    return:
+        sampled_points: [k,4] center of k clusters
+    """
+
+    gng = GrowingNeuralGas(
+        max_neurons = k, 
+        max_iter = 100,
+        max_age= 10,
+        eb = 0.1,
+        en = 0.006,
+        alpha = 0.5,
+        beta = 0.995,
+        l =1,
+        dataset = arr
+    )
+
+    centroids, model = gng.learn()
+    centroids = np.array(centroids)
+    centroids = centroids[:-1]
+
+    print (k)
+    print(np.shape(centroids))
+    
+    ids = [[id] for i in range(k)]
+    ids = np.array(ids)
+    print(np.shape(ids))
+    print(type(ids))
+
+    return np.concatenate([centroids, ids],axis=1)
+
 
 def get_avg_sem_samples(points,sem_label,k):
     """
@@ -96,14 +142,14 @@ def get_avg_sem_samples(points,sem_label,k):
         sampled_points: [k * 4] k points from sampled results concat with its semantic label
     """
     sem_classes,counts = get_sem_counts(sem_label)
-    points_num = len(points)
+    points_num = len(points) #2048?
 
-    sub_points = [[] for i in range(sem_classes)]
-    sem_split = get_sem_split(counts,points_num,k)
+    sub_points = [[] for i in range(sem_classes)] #In our case sub_points=[[],[],[],[],[]]
+    sem_split = get_sem_split(counts,points_num,k) #This is a list with the number of points ??that all have to sum at 32?? on each label ex. 1 -> 17pnts 2->5 3->5 3-> 100 4-> 4 5-> 1 
 
     for i in range(points_num):
-        sem = sem_label[i]
-        sub_points[sem - 1].append(points[i])
+        sem = sem_label[i] # =1 =wall
+        sub_points[sem - 1].append(points[i]) # appends all the points of the same label in an array. all arrays from all labels are in one array called sub_points
     
     sampled_points = None
     for i in range(sem_classes):
@@ -111,11 +157,11 @@ def get_avg_sem_samples(points,sem_label,k):
             continue
             
         if sampled_points is None:
-            sampled_points = k_means(sub_points[i],sem_split[i],i + 1)
+            sampled_points = gng(sub_points[i],sem_split[i],i + 1) #chanche with gng
         else:
             sampled_points = np.concatenate(
                 [sampled_points,
-                k_means(sub_points[i],sem_split[i],i + 1)],
+                gng(sub_points[i],sem_split[i],i + 1)], #chanche with gng
                 axis = 0
             )
     return sem_classes,sampled_points
@@ -174,7 +220,7 @@ def sample_semantic_points(config,k = 32):
                 item[4].mkdir(parents=True,exist_ok=True)
             out_fp = item[3].open('w')
 
-            points,sems = read_pointclouds(item[0],item[1],item[2])
+            points,sems = read_pointclouds(item[0],item[1],item[2]) #points_path,semantic_path,sample_path
 
             sem_classes,out_pointclouds = get_avg_sem_samples(points,sems,k)
             
