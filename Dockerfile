@@ -23,6 +23,10 @@ RUN pip install sklearn
 
 RUN pip install numpy
 
+RUN pip install igraph
+
+RUN pip install plyfile
+
 #RUN conda install -y -c conda-forge timm einops && conda install -y -c conda-forge pycocotools
 
 
