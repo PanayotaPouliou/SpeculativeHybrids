@@ -10,7 +10,7 @@
         "lambdaG" : 0.5,
         "lr" : 0.0001,
         "D_iter" : 3,
-        "need_FPD" : false, 
+        "need_FPD" : true, 
         "PointNet_weights" : "../../FPD_data/cls_model_99.pth",
         "FPD_path" : "../../FPD_data/statistics_building_train.npz"
     }
