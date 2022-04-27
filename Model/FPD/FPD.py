@@ -193,9 +193,9 @@ def save_statistics(real_pointclouds, path, model, batch_size, dims, cuda):
 def calculate_fpd(pointclouds1, pointclouds2=None, statistic_save_path=None, batch_size=100, dims=1808, device=None):
     """Calculates the FPD of two pointclouds"""
 
-    PointNet_pretrained_path = '/root/code/Phoneix/Rebuild/FPD_data/cls_model_39.pth'
+    PointNet_pretrained_path = '/workspaces/SpeculativeHybrids/FPD_data/cls_model_44.pth'
     if statistic_save_path is None:
-        statistic_save_path = '/root/code/Phoenix/FPD/pre_statistics_all.npz'
+        statistic_save_path = '/workspaces/SpeculativeHybrids/FPD_data/pre_statistics_all.npz'
     model = PointNetCls(k=16)
     model.load_state_dict(torch.load(PointNet_pretrained_path,map_location="cpu"))
     
@@ -215,43 +215,49 @@ def calculate_fpd(pointclouds1, pointclouds2=None, statistic_save_path=None, bat
     return fid_value
 
 if __name__ == '__main__':
-    PointNet_pretrained_path = '/root/code/Phoneix/Phoenix_min/FPD/cls_model_39.pth'
+    PointNet_pretrained_path = '/workspaces/SpeculativeHybrids/FPD_data/cls_model_44.pth'
     model = PointNetCls(k=16)
     model.load_state_dict(torch.load(PointNet_pretrained_path))
     model.to(0)
+
+    m, s = compute_statistics_of_path('/workspaces/SpeculativeHybrids/FPD_data/01691157/points',model)
+    np.savez("statistics_building_train.npz",m = m,s = s)
     
-    m, s = compute_statistics_of_path('/root/data/shapenet_GAN/points/02691156',model)
-    np.savez("statistics_plane_train.npz",m = m,s = s)
+    m, s = compute_statistics_of_path('/workspaces/SpeculativeHybrids/FPD_data/01691157/test_data',model)
+    np.savez("statistics_building_test.npz",m = m,s = s)
+
+    #m, s = compute_statistics_of_path('/root/data/shapenet_GAN/points/02691156',model)
+    #np.savez("statistics_plane_train.npz",m = m,s = s)
     
-    m, s = compute_statistics_of_path('/root/data/shapenet_GAN/test_data/02691156',model)
-    np.savez("statistics_plane_test.npz",m = m,s = s)
+    #m, s = compute_statistics_of_path('/root/data/shapenet_GAN/test_data/02691156',model)
+    #np.savez("statistics_plane_test.npz",m = m,s = s)
     
-    m, s = compute_statistics_of_path('/root/data/shapenet_GAN/points/02958343',model)
-    np.savez("statistics_car_train.npz",m = m,s = s)
+    #m, s = compute_statistics_of_path('/root/data/shapenet_GAN/points/02958343',model)
+    #np.savez("statistics_car_train.npz",m = m,s = s)
     
-    m, s = compute_statistics_of_path('/root/data/shapenet_GAN/test_data/02958343',model)
-    np.savez("statistics_car_test.npz",m = m,s = s)
+    #m, s = compute_statistics_of_path('/root/data/shapenet_GAN/test_data/02958343',model)
+    #np.savez("statistics_car_test.npz",m = m,s = s)
     
-    m, s = compute_statistics_of_path('/root/data/shapenet_GAN/points/03001627',model)
-    np.savez("statistics_chair_train.npz",m = m,s = s)
+    #m, s = compute_statistics_of_path('/root/data/shapenet_GAN/points/03001627',model)
+    #np.savez("statistics_chair_train.npz",m = m,s = s)
     
-    m, s = compute_statistics_of_path('/root/data/shapenet_GAN/test_data/03001627',model)
-    np.savez("statistics_chair_test.npz",m = m,s = s)
+    #m, s = compute_statistics_of_path('/root/data/shapenet_GAN/test_data/03001627',model)
+    #np.savez("statistics_chair_test.npz",m = m,s = s)
     
-    m, s = compute_statistics_of_path('/root/data/shapenet_GAN/points/03467517',model)
-    np.savez("statistics_guitar_train.npz",m = m,s = s)
+    #m, s = compute_statistics_of_path('/root/data/shapenet_GAN/points/03467517',model)
+    #np.savez("statistics_guitar_train.npz",m = m,s = s)
     
-    m, s = compute_statistics_of_path('/root/data/shapenet_GAN/test_data/03467517',model)
-    np.savez("statistics_guitar_test.npz",m = m,s = s)
+    #m, s = compute_statistics_of_path('/root/data/shapenet_GAN/test_data/03467517',model)
+    #np.savez("statistics_guitar_test.npz",m = m,s = s)
     
-    m, s = compute_statistics_of_path('/root/data/shapenet_GAN/points/03636649',model)
-    np.savez("statistics_lamp_train.npz",m = m,s = s)
+    #m, s = compute_statistics_of_path('/root/data/shapenet_GAN/points/03636649',model)
+    #np.savez("statistics_lamp_train.npz",m = m,s = s)
     
-    m, s = compute_statistics_of_path('/root/data/shapenet_GAN/test_data/03636649',model)
-    np.savez("statistics_lamp_test.npz",m = m,s = s)
+    #m, s = compute_statistics_of_path('/root/data/shapenet_GAN/test_data/03636649',model)
+    #np.savez("statistics_lamp_test.npz",m = m,s = s)
     
-    m, s = compute_statistics_of_path('/root/data/shapenet_GAN/points/04379243',model)
-    np.savez("statistics_table_train.npz",m = m,s = s)
+    #m, s = compute_statistics_of_path('/root/data/shapenet_GAN/points/04379243',model)
+    #np.savez("statistics_table_train.npz",m = m,s = s)
     
-    m, s = compute_statistics_of_path('/root/data/shapenet_GAN/test_data/04379243',model)
-    np.savez("statistics_table_test.npz",m = m,s = s)
+    #m, s = compute_statistics_of_path('/root/data/shapenet_GAN/test_data/04379243',model)
+    #np.savez("statistics_table_test.npz",m = m,s = s)
