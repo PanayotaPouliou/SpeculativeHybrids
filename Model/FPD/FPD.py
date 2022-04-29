@@ -224,7 +224,7 @@ if __name__ == '__main__':
     np.savez("statistics_building_train.npz",m = m,s = s)
     
     m, s = compute_statistics_of_path('/workspaces/SpeculativeHybrids/FPD_data/01691157/test_data',model)
-    np.savez("statistics_building_test.npz",m = m,s = s)
+    np.savez("statistics_building_test.npz",m = m,s = s) #do I need this?
 
     #m, s = compute_statistics_of_path('/root/data/shapenet_GAN/points/02691156',model)
     #np.savez("statistics_plane_train.npz",m = m,s = s)
