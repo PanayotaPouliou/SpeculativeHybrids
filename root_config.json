@@ -1,5 +1,5 @@
 {
-    "save_root":"/workspaces/SpeculativeHybrids/Saves",
+    "save_root":"/user/student.aau.dk/ppouli20/SpeculativeHybrids/Saves",
     "model_name":"CPCGAN",
     "dataset_name":"CPCGAN_Datas",
     "life_cycle_name":"LifeCycle",
@@ -9,7 +9,7 @@
         "max_ckpt_in_fast_track":1,
         "max_ckpt_in_consistent_track":1
     },
-    "root_file_path":"/workspaces/SpeculativeHybrids",
+    "root_file_path":"/user/student.aau.dk/ppouli20/SpeculativeHybrids",
     "model_file_path":"./Model/CPCGAN.py",
     "dataset_file_path":"./Dataset/Dataset.py",
     "life_cycle_file_path":"./LifeCycle.py",

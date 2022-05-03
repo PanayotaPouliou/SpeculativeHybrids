@@ -11,7 +11,7 @@
         "lr" : 0.0001,
         "D_iter" : 3,
         "need_FPD" : false, 
-        "PointNet_weights" : "../../FPD_data/cls_model_44.pth",
-        "FPD_path" : "../../FPD_data/statistics_building_train.npz"
+        "PointNet_weights" : "/user/student.aau.dk/ppouli20/SpeculativeHybrids/FPD_data/cls_model_99.pth",
+        "FPD_path" : "/user/student.aau.dk/ppouli20/SpeculativeHybrids/FPD_data/statistics_building_train.npz"
     }
 }
