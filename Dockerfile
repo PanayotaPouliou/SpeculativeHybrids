@@ -2,6 +2,9 @@
 
 FROM pytorch/pytorch:1.7.0-cuda11.0-cudnn8-devel
 
+RUN rm /etc/apt/sources.list.d/cuda.list
+RUN rm /etc/apt/sources.list.d/nvidia-ml.list
+
 # [Optional] Uncomment this section to install additional OS packages.
 RUN apt-get update -y && export DEBIAN_FRONTEND=noninteractive 
     #\     
@@ -22,10 +25,6 @@ RUN conda install -y ipython h5py nltk joblib pandas scipy \
 RUN pip install sklearn
 
 RUN pip install numpy
-
-RUN pip install igraph
-
-RUN pip install plyfile
 
 #RUN conda install -y -c conda-forge timm einops && conda install -y -c conda-forge pycocotools
 
