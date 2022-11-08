@@ -158,5 +158,4 @@ class GrowingNeuralGas:
             # Learn new posititon
             self.learning_position()
             pnts = self.update_neuron()
-            
         return pnts, self.gng

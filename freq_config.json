@@ -1,8 +1,8 @@
 {
     "dataset_config" : {
-        "class_choice" : ["Airplane"]
+        "class_choice" : ["Building"]
     },
     "model_config" : {
-        "FPD_path" : "../../FPD_data/statistics_plane_train.npz"
+        "FPD_path" : "/user/student.aau.dk/ppouli20/SpeculativeHybrids/FPD_data/statistics_building_train.npz"
     }
 }
